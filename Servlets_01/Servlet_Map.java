@@ -35,34 +35,34 @@ public class Servlet_Map extends HttpServlet {
 		// TODO Auto-generated method stub
 		ServletOutputStream out = response.getOutputStream();
 		Iterator iterator = hmap.keySet().iterator();
-//	       out.println("<html>");
-//	       out.println("<head><title>Hello Servlet</title></head>");
-//	        
-//	       out.println("<body>");
-//	       out.println("<h3>Hello World</h3>");
-//	       out.println("This is my first Servlet");
-//	       out.println("<form  action = >");
-//	       out.println("New key:<br>");
-//	       out.println("<input type=\"text\">");
-//	       out.println("<br>");
-//	       out.println("New value:<br>");
-//	       out.println("<input name= type=\"text\">");
-//	       out.println("<br><br>");
-//	       out.println("<input type=\"submit\" value=\"Submit\">");
-//	       out.println("</form>");
+	       out.println("<html>");
+	       out.println("<head><title>Hello Servlet</title></head>");
+	        
+	       out.println("<body>");
+	       out.println("<h3>Hello World</h3>");
+	       out.println("This is my first Servlet");
+	       out.println("<form");
+	       out.println("New key:<br>");
+	       out.println("<input type=\"text\">");
+	       out.println("<br>");
+	       out.println("New value:<br>");
+	       out.println("<input name= type=\"text\">");
+	       out.println("<br><br>");
+	       out.println("<input type=\"submit\" value=\"Submit\">");
+	       out.println("</form>");
 	      
 	     
-//		  out.println("<br>");
+		  out.println("<br>");
 		  while (iterator.hasNext()) {
 		   String key = iterator.next().toString();
 		   String value = hmap.get(key).toString();
-//		   out.println("<br>");
+		   out.println("<br>");
 		   out.println(key + " " + value);
-//		   out.print("<br>");
+		   out.print("<br>");
 		}
 
-//		 out.println("</body>");
-//	       out.println("</html>");
+		 out.println("</body>");
+	       out.println("</html>");
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class Servlet_Map extends HttpServlet {
 			String value = request.getParameter(currentENUM);
 			hmap.put(currentENUM,value);
 	      }
-	    
+	    doGet(reuest,response);
 	}
 
 }

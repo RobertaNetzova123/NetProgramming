@@ -1,7 +1,6 @@
 package elsys_servlets;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -13,18 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet_Map
+ * Servlet_03 implementation class Servlet_03
  */
-@WebServlet("/Servlet_Map")
-public class Servlet_Map extends HttpServlet {
+@WebServlet("/Servlet_03")
+public class Servlet_03 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Enumeration enumeration;
-	 HashMap<String, String> hmap = new HashMap<String, String>();
+	HashMap<String, String> hmap = new HashMap<String, String>();
+	String key;
+	String value;
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public Servlet_Map() {
-        super();
+    public Servlet_03() {
         // TODO Auto-generated constructor stub
     }
 
@@ -33,36 +33,36 @@ public class Servlet_Map extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ServletOutputStream out = response.getOutputStream();
-		Iterator iterator = hmap.keySet().iterator();
+		  ServletOutputStream out = response.getOutputStream();
+		  Iterator iterator = hmap.keySet().iterator();
 	       out.println("<html>");
 	       out.println("<head><title>Hello Servlet</title></head>");
 	        
 	       out.println("<body>");
 	       out.println("<h3>Hello World</h3>");
 	       out.println("This is my first Servlet");
-	       out.println("<form");
+	       out.println("<form method = \"post\">");
 	       out.println("New key:<br>");
-	       out.println("<input type=\"text\">");
+	       out.println("<input name = \"key\" type=\"text\">");
 	       out.println("<br>");
 	       out.println("New value:<br>");
-	       out.println("<input name= type=\"text\">");
+	       out.println("<input name = \"value\"type=\"text\">");
 	       out.println("<br><br>");
 	       out.println("<input type=\"submit\" value=\"Submit\">");
 	       out.println("</form>");
 	      
-	     
-		  out.println("<br>");
-		  while (iterator.hasNext()) {
-		   String key = iterator.next().toString();
-		   String value = hmap.get(key).toString();
-		   out.println("<br>");
-		   out.println(key + " " + value);
-		   out.print("<br>");
-		}
-
-		 out.println("</body>");
+	       while (iterator.hasNext()) {
+			   String key = iterator.next().toString();
+			   String value = hmap.get(key).toString();
+			   out.println("<br>");
+			   out.println(key + " " + value);
+			   out.print("<br>");
+	       }
+	       out.println("</body>");
 	       out.println("</html>");
+//		  out.println();
+//		  out.println(value);
+	   
 	}
 
 	/**
@@ -70,14 +70,14 @@ public class Servlet_Map extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		key = request.getParameter("key");
+		value = request.getParameter("value");
+		hmap.put(key,value);
+//		ServletOutputStream out = response.getOutputStream();
+//		out.println();
+//		out.println("Succes!!!");
+		doGet(request,response);
 		
-		 enumeration = request.getParameterNames();
-		 while (enumeration.hasMoreElements()) {
-			String currentENUM = enumeration.nextElement().toString();
-			String value = request.getParameter(currentENUM);
-			hmap.put(currentENUM,value);
-	      }
-	    doGet(reuest,response);
 	}
 
 }
