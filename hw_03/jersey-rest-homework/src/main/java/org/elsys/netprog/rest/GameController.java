@@ -48,30 +48,27 @@ public class GameController {
 	@Produces(value = { MediaType.APPLICATION_JSON })
 	public Response guess(@PathParam("id") String gameId,
 			@PathParam("guess") String guess) throws Exception {
-		// TODO: Add your code here
-//		if (!hmap.containsKey(gameId))
-////			return Response.status(404).entity(System.lineSeparator() + "ID ----WRONG ").build();
-	
-//		if (!gameId.equals("30")) return Response.status(404).entity(System.lineSeparator() + "ID ----WRONG ").build();
+
+		if (!hmap.containsKey(gameId))
+			return Response.status(404)
+					.entity(System.lineSeparator() + "ID ----WRONG ").build();
+
+		if (!UniqueNumber(guess) || !FourDigitNumber(guess))
+			return Response.status(400)
+					.entity(System.lineSeparator() + "NUMBER -----WRONG")
+					.build();
 		
-		HashSet<Character> uniquecharset = new HashSet();
-		String number = hmap.get(gameId).toString();
-		boolean result = false;
-		for (int i = 0; i < number.length(); i++) {
-			result = uniquecharset.add(number.charAt(i));
-			if (result == false) {
-				break;
-			}
-		}
-//		if (UniqueNumber((String) hmap.get(gameId)) == false)
-		if (result  == false) return Response.status(400).entity(System.lineSeparator() + "NUMBER -----WRONG").build();
 		return Response.status(200)
-				.entity(System.lineSeparator() + "OK---------- ")
-				.build();
+				.entity(System.lineSeparator() + "OK---------- ").build();
 
 	}
+	
+	private boolean FourDigitNumber(String number) {
+		boolean answ = (number.length() != 4) ? false : true;
+		return answ;
+	}
 
- public boolean UniqueNumber(String number) {
+	public static boolean UniqueNumber(String number) {
 
 		HashSet<Character> uniquecharset = new HashSet();
 		boolean result = true;
@@ -92,3 +89,6 @@ public class GameController {
 		return Response.status(404).build();
 	}
 }
+
+
+

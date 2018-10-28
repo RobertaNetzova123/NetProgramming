@@ -17,23 +17,14 @@ public class Games {
 	private String randomNum() {
 
 		boolean charIsUnique = false;
-		String str = null;
+		String number = null;
 		while (!charIsUnique) {
 			charIsUnique = true;
-			str = Integer.toString(randomNumberInRange(1000, 9999));
-			HashSet<Character> uniquecharset = new HashSet();
-
-			for (int i = 0; i < str.length(); i++) {
-				boolean result = uniquecharset.add(str.charAt(i));
-				if (result == false) {
-					charIsUnique = false;
-					break;
-				}
-			}
-
+			number = Integer.toString(randomNumberInRange(1000, 9999));
+			charIsUnique = GameController.UniqueNumber(number);
 		}
 
-		return str;
+		return number;
 	
 	}
 
