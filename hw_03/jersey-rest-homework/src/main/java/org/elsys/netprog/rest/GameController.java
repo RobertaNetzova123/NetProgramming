@@ -32,7 +32,7 @@ public class GameController {
 	public Response startGame() throws URISyntaxException {
 		String uniqueID = UUID.randomUUID().toString();
 		Games newGame = new Games(uniqueID);
-		hmap.put(newGame.getID(), newGame.getSecretNumber());
+		hmap.put(newGame.getID(), newGame);
 
 		return Response
 				.status(201)
@@ -58,8 +58,15 @@ public class GameController {
 					.entity(System.lineSeparator() + "NUMBER -----WRONG")
 					.build();
 		
+	Games currentGame = (Games) hmap.get(gameId);
+	currentGame.contains(guess);
+	
 		return Response.status(200)
-				.entity(System.lineSeparator() + "OK---------- ").build();
+				.entity(System.lineSeparator() + "OK----------  Cows:    " 
+		+ currentGame.getCowsCount() + "  Bulls  " 
+						+ currentGame.getBullsCount()
+						+ "  attempts   " + currentGame.getAttemptsCount()
+						+ "  status:   " + currentGame.getGameStatus()).build();
 
 	}
 	
