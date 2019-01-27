@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class RandomByteArray {
 
-	protected static int length = 1;
+	protected static int length = 3;
 	protected static byte[] byteArr = CreateRandomByteArray(length);
 	protected static String hash = MD5Hashing(byteArr);
 
